@@ -262,5 +262,5 @@ b:hover{
   background-image: url("./img/Wedges-4s-307px.svg");
   background-size: 30%;
   background-repeat: no-repeat;
-  background-position: 50%;
+  /* background-position: 50%; */
 }
