@@ -2,21 +2,34 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import "./App.css";
+import Loader from "../components/Loader";
+
 
 function App() {
   const [count, setCount] = useState(0);
   const [characters, setCharacters] = useState([]);
+  const [loader, setLoader] = useState(true)
 
   useEffect(() => {
     axios
       .get("https://randomuser.me/api/?results=4")
-      .then((res) => setCharacters(res.data.results));
+      .then((res) => {setCharacters(res.data.results)
+        setTimeout(()=>{
+          setLoader(false);
+      }, 1500);
+      });
   }, []);
 
   const getUsers = () => {
     axios
       .get("https://randomuser.me/api/?results=4")
-      .then((res) => setCharacters(res.data.results));
+      .then((res) => {
+        setCharacters(res.data.results)
+        setLoader(true)
+        setTimeout(()=>{
+          setLoader(false);
+      }, 1500);
+      });
   };
 
   console.log(characters);
@@ -35,6 +48,7 @@ function App() {
           </div>
         </div>
         <br />
+        {loader ? <Loader /> : 
         <div className="characters">
           {characters.map((character) => (
             <motion.div whileHover={{ scale: 1.1 }} whileInView={{ opacity: [0, 1] }} className="boxx" key={character?.picture.large}>
@@ -49,6 +63,7 @@ function App() {
             </motion.div>
           ))}
         </div>
+        }
         <br />
 
       <div ontouchstart="">
