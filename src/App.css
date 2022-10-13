@@ -258,3 +258,9 @@ b:hover{
     margin: 2px;
 }
 
+.spinner{
+  background-image: url("./img/Wedges-4s-307px.svg");
+  background-size: 10%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
